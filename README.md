@@ -1,2 +1,2 @@
 # JSON Helper
-OSX desktop tool to prettify json
+OSX desktop tool to validate and prettify json
