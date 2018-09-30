@@ -83,19 +83,26 @@ procedure Tjsonhelperform.JsonInputMemoKeyUp(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   // Keyup for left-hand memo
-  try
-    InvalidLabel.Visible:=false;
-    StatusLabel.Visible:=false;
+  if (Shift = [ssMeta]) and (Key = VK_C) then begin
+    if JsonInputMemo.SelLength > 0 then
+      Clipboard.AsText := JsonInputMemo.SelText
+    else
+      Clipboard.AsText := JsonInputMemo.Text;
+  end else begin
+    try
+      InvalidLabel.Visible:=false;
+      StatusLabel.Visible:=false;
 
-    JsonOutputMemo.Text:='';
+      JsonOutputMemo.Text:='';
 
-    jData := GetJSON(JsonInputMemo.Text);
-    JsonOutputMemo.Text:=jData.FormatJSON;
-  except
-    on E: Exception do begin
-      InvalidLabel.Visible:=true;
-      StatusLabel.Caption:=E.Message;
-      StatusLabel.Visible:=true;
+      jData := GetJSON(JsonInputMemo.Text);
+      JsonOutputMemo.Text:=jData.FormatJSON;
+    except
+      on E: Exception do begin
+        InvalidLabel.Visible:=true;
+        StatusLabel.Caption:=E.Message;
+        StatusLabel.Visible:=true;
+      end;
     end;
   end;
 end;
