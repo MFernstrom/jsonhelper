@@ -1,0 +1,115 @@
+object jsonhelperform: Tjsonhelperform
+  Left = 262
+  Height = 379
+  Top = 126
+  Width = 698
+  BorderIcons = []
+  Caption = 'JSON Helper v0.1'
+  ClientHeight = 379
+  ClientWidth = 698
+  OnCreate = FormCreate
+  LCLVersion = '1.9.0.0'
+  object JsonInputMemo: TMemo
+    AnchorSideLeft.Control = Owner
+    AnchorSideRight.Control = Splitter1
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
+    Left = 0
+    Height = 339
+    Top = 40
+    Width = 258
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    Lines.Strings = (
+      '{}'
+    )
+    OnKeyUp = JsonInputMemoKeyUp
+    ScrollBars = ssAutoBoth
+    TabOrder = 0
+  end
+  object JsonOutputMemo: TMemo
+    AnchorSideLeft.Control = Splitter1
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = JsonInputMemo
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
+    Left = 263
+    Height = 339
+    Top = 40
+    Width = 435
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    Lines.Strings = (
+      '{}'
+    )
+    OnKeyUp = JsonOutputMemoKeyUp
+    ScrollBars = ssAutoBoth
+    TabOrder = 1
+  end
+  object Splitter1: TSplitter
+    AnchorSideTop.Control = Owner
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
+    Left = 258
+    Height = 379
+    Top = 0
+    Width = 5
+    Align = alNone
+    Anchors = [akTop, akBottom]
+  end
+  object ClearButton: TButton
+    Left = 8
+    Height = 20
+    Top = 8
+    Width = 60
+    AutoSize = True
+    Caption = 'Clear'
+    OnClick = ClearButtonClick
+    TabOrder = 3
+  end
+  object StatusLabel: TLabel
+    Left = 304
+    Height = 16
+    Top = 8
+    Width = 72
+    Caption = 'StatusLabel'
+    ParentColor = False
+    Visible = False
+  end
+  object InvalidLabel: TLabel
+    Left = 216
+    Height = 16
+    Top = 8
+    Width = 77
+    Caption = 'Invalid JSON'
+    Font.Color = clRed
+    ParentColor = False
+    ParentFont = False
+    Visible = False
+  end
+  object HideButton: TButton
+    Left = 79
+    Height = 20
+    Top = 8
+    Width = 56
+    AutoSize = True
+    Caption = 'Hide'
+    OnClick = HideButtonClick
+    TabOrder = 4
+  end
+  object QuitButton: TButton
+    Left = 144
+    Height = 20
+    Top = 8
+    Width = 54
+    AutoSize = True
+    Caption = 'Quit'
+    OnClick = QuitButtonClick
+    TabOrder = 5
+  end
+  object TrayIcon1: TTrayIcon
+    Visible = True
+    OnClick = TrayIcon1Click
+    Left = 432
+  end
+end
