@@ -1,7 +1,8 @@
 # JSON Helper
 OSX desktop tool to validate and prettify json
 <p align="center">
-  <img src="Screen Shot.png">
+  <img src="Screen Shot.png"><br>
+  <img src="jsonhelper.gif">
 </p>
 
 ## Install
