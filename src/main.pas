@@ -1,7 +1,7 @@
 unit main;
 
 {
-  Version         0.1
+  Version         0.2
   Author          Marcus Fernstrom
   Copyright       Marcus Fernstrom, 2018
   License         GPLv3
@@ -14,7 +14,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls,
-  jsonparser, fpjson, LCLType, Clipbrd;
+  jsonparser, fpjson, LCLType, Clipbrd, LResources;
 
 type
 
@@ -60,12 +60,8 @@ begin
 end;
 
 procedure Tjsonhelperform.FormCreate(Sender: TObject);
-var
-  path: String;
 begin
-  path := Application.Params[0];
-  path := StringReplace(path, 'MacOS/jsonhelper', 'Resources/brackets.ico', []);
-  TrayIcon1.Icon.LoadFromFile(path);
+  TrayIcon1.Icon.LoadFromLazarusResource('brackets');
 end;
 
 procedure Tjsonhelperform.HideButtonClick(Sender: TObject);
@@ -124,5 +120,7 @@ begin
   jsonhelperform.Show;
 end;
 
-end.
+initialization
+  {$I ico.lrs}
 
+end.
