@@ -1,11 +1,11 @@
 object jsonhelperform: Tjsonhelperform
-  Left = 833
-  Height = 758
-  Top = 578
+  Left = 397
+  Height = 848
+  Top = 209
   Width = 1396
   BorderIcons = []
-  Caption = 'JSON Helper v0.3 (https://github.com/MFernstrom/jsonhelper)'
-  ClientHeight = 758
+  Caption = 'JSON Helper v0.3.1 (https://github.com/MFernstrom/jsonhelper)'
+  ClientHeight = 848
   ClientWidth = 1396
   DesignTimePPI = 192
   OnCreate = FormCreate
@@ -16,10 +16,11 @@ object jsonhelperform: Tjsonhelperform
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 0
-    Height = 678
+    Height = 768
     Top = 80
     Width = 521
     Anchors = [akTop, akLeft, akRight, akBottom]
+    Font.Height = -27
     OnKeyUp = JsonInputMemoKeyUp
     ParentFont = False
     ScrollBars = ssAutoBoth
@@ -35,10 +36,11 @@ object jsonhelperform: Tjsonhelperform
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 531
-    Height = 678
+    Height = 768
     Top = 80
     Width = 865
     Anchors = [akTop, akLeft, akRight, akBottom]
+    Font.Height = -27
     OnKeyUp = JsonOutputMemoKeyUp
     ParentFont = False
     ScrollBars = ssAutoBoth
@@ -50,7 +52,7 @@ object jsonhelperform: Tjsonhelperform
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 521
-    Height = 758
+    Height = 848
     Top = 0
     Width = 10
     Align = alNone
@@ -114,14 +116,14 @@ object jsonhelperform: Tjsonhelperform
     AnchorSideTop.Control = ClearButton
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
-    Left = 1288
+    Left = 1296
     Height = 40
-    Top = 20
-    Width = 88
-    Anchors = [akRight]
-    BorderSpacing.Top = 20
+    Top = 16
+    Width = 80
+    Anchors = [akTop, akRight]
     BorderSpacing.Right = 20
     ItemHeight = 32
+    ItemIndex = 2
     Items.Strings = (
       '8'
       '9'
@@ -135,15 +137,15 @@ object jsonhelperform: Tjsonhelperform
     )
     OnChange = FontComboBoxChange
     TabOrder = 6
-    Text = 'FontComboBox'
+    Text = '10'
   end
   object Label1: TLabel
     AnchorSideTop.Control = FontComboBox
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = FontComboBox
-    Left = 1178
+    Left = 1186
     Height = 32
-    Top = 24
+    Top = 20
     Width = 95
     Anchors = [akTop, akRight]
     BorderSpacing.Right = 15
