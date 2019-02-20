@@ -1,10 +1,10 @@
 object jsonhelperform: Tjsonhelperform
-  Left = 278
+  Left = 833
   Height = 758
-  Top = 400
+  Top = 578
   Width = 1396
   BorderIcons = []
-  Caption = 'JSON Helper v0.2'
+  Caption = 'JSON Helper v0.3 (https://github.com/MFernstrom/jsonhelper)'
   ClientHeight = 758
   ClientWidth = 1396
   DesignTimePPI = 192
@@ -20,13 +20,11 @@ object jsonhelperform: Tjsonhelperform
     Top = 80
     Width = 521
     Anchors = [akTop, akLeft, akRight, akBottom]
-    Lines.Strings = (
-      '{}'
-    )
     OnKeyUp = JsonInputMemoKeyUp
     ParentFont = False
     ScrollBars = ssAutoBoth
     TabOrder = 0
+    WordWrap = False
   end
   object JsonOutputMemo: TMemo
     AnchorSideLeft.Control = Splitter1
@@ -41,13 +39,11 @@ object jsonhelperform: Tjsonhelperform
     Top = 80
     Width = 865
     Anchors = [akTop, akLeft, akRight, akBottom]
-    Lines.Strings = (
-      '{}'
-    )
     OnKeyUp = JsonOutputMemoKeyUp
     ParentFont = False
     ScrollBars = ssAutoBoth
     TabOrder = 1
+    WordWrap = False
   end
   object Splitter1: TSplitter
     AnchorSideTop.Control = Owner
@@ -113,6 +109,46 @@ object jsonhelperform: Tjsonhelperform
     OnClick = QuitButtonClick
     ParentFont = False
     TabOrder = 5
+  end
+  object FontComboBox: TComboBox
+    AnchorSideTop.Control = ClearButton
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 1288
+    Height = 40
+    Top = 20
+    Width = 88
+    Anchors = [akRight]
+    BorderSpacing.Top = 20
+    BorderSpacing.Right = 20
+    ItemHeight = 32
+    Items.Strings = (
+      '8'
+      '9'
+      '10'
+      '11'
+      '12'
+      '13'
+      '14'
+      '15'
+      '16'
+    )
+    OnChange = FontComboBoxChange
+    TabOrder = 6
+    Text = 'FontComboBox'
+  end
+  object Label1: TLabel
+    AnchorSideTop.Control = FontComboBox
+    AnchorSideTop.Side = asrCenter
+    AnchorSideRight.Control = FontComboBox
+    Left = 1178
+    Height = 32
+    Top = 24
+    Width = 95
+    Anchors = [akTop, akRight]
+    BorderSpacing.Right = 15
+    Caption = 'Font size'
+    ParentColor = False
   end
   object TrayIcon1: TTrayIcon
     Icon.Data = {

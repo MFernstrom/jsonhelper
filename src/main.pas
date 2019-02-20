@@ -1,7 +1,7 @@
 unit main;
 
 {
-  Version         0.2
+  Version         0.3
   Author          Marcus Fernstrom
   Copyright       Marcus Fernstrom, 2018
   License         GPLv3
@@ -22,7 +22,9 @@ type
 
   Tjsonhelperform = class(TForm)
     ClearButton: TButton;
+    FontComboBox: TComboBox;
     HideButton: TButton;
+    Label1: TLabel;
     QuitButton: TButton;
     InvalidLabel: TLabel;
     StatusLabel: TLabel;
@@ -31,6 +33,7 @@ type
     Splitter1: TSplitter;
     TrayIcon1: TTrayIcon;
     procedure ClearButtonClick(Sender: TObject);
+    procedure FontComboBoxChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure HideButtonClick(Sender: TObject);
     procedure QuitButtonClick(Sender: TObject);
@@ -57,6 +60,15 @@ procedure Tjsonhelperform.ClearButtonClick(Sender: TObject);
 begin
   JsonInputMemo.Clear;
   JsonOutputMemo.Clear;
+end;
+
+procedure Tjsonhelperform.FontComboBoxChange(Sender: TObject);
+var
+  fsize: Integer;
+begin
+  fsize := StrtoInt(FontComboBox.Items[FontComboBox.ItemIndex]);
+  JsonInputMemo.font.Size := fsize;
+  JsonOutputMemo.font.Size := fsize;
 end;
 
 procedure Tjsonhelperform.FormCreate(Sender: TObject);
