@@ -1,7 +1,7 @@
 unit main;
 
 {
-  Version         0.3.1
+  Version         0.3.2
   Author          Marcus Fernstrom
   Copyright       Marcus Fernstrom, 2018
   License         GPLv3
