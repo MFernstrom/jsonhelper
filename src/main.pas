@@ -89,7 +89,7 @@ begin
   TrayIcon1.Icon.LoadFromLazarusResource('brackets');
   jsonHighlighter := TSynFacilSyn.Create(self);
   JSONSynEdit.Highlighter := jsonHighlighter;
-  jsonHighlighter.LoadFromFile('C:\Users\Marcus\Documents\jshl.xml');
+  jsonHighlighter.LoadFromResourceName(HInstance, 'JSHL');
 end;
 
 procedure Tjsonhelperform.HideButtonClick(Sender: TObject);

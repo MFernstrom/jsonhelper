@@ -4,7 +4,7 @@ object jsonhelperform: Tjsonhelperform
   Top = 489
   Width = 1745
   BorderIcons = []
-  Caption = 'JSON Helper v0.3.6 (https://github.com/MFernstrom/jsonhelper)'
+  Caption = 'JSON Helper v0.3.7 (https://github.com/MFernstrom/jsonhelper)'
   ClientHeight = 884
   ClientWidth = 1745
   DesignTimePPI = 192

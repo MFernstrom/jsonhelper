@@ -13,6 +13,9 @@
         <DpiAware Value="True"/>
       </XPManifest>
       <Icon Value="0"/>
+      <Resources Count="1">
+        <Resource_0 FileName="..\..\..\..\jshl.xml" Type="RCDATA" ResourceName="JSHL"/>
+      </Resources>
     </General>
     <BuildModes Count="2">
       <Item1 Name="Windows" Default="True"/>
