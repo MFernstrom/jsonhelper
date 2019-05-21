@@ -1,7 +1,7 @@
 unit main;
 
 {
-  Version         0.3.2
+  Version         0.3.4
   Author          Marcus Fernstrom
   Copyright       Marcus Fernstrom, 2018
   License         GPLv3
@@ -14,7 +14,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls,
-  jsonparser, fpjson, LCLType, Clipbrd, LResources;
+  jsonparser, fpjson, LCLType, Clipbrd, LResources, SynEdit,
+  SynHighlighterJScript, SynFacilHighlighter;
 
 type
 
@@ -22,23 +23,25 @@ type
 
   Tjsonhelperform = class(TForm)
     ClearButton: TButton;
+    SearchInput: TEdit;
     FontComboBox: TComboBox;
     HideButton: TButton;
-    Label1: TLabel;
+    FontLabel: TLabel;
     QuitButton: TButton;
     InvalidLabel: TLabel;
     StatusLabel: TLabel;
     JsonInputMemo: TMemo;
-    JsonOutputMemo: TMemo;
     Splitter1: TSplitter;
+    JSONSynEdit: TSynEdit;
     TrayIcon1: TTrayIcon;
     procedure ClearButtonClick(Sender: TObject);
+    procedure SearchInputKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FontComboBoxChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure HideButtonClick(Sender: TObject);
+    procedure JSONSynEditKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure QuitButtonClick(Sender: TObject);
     procedure JsonInputMemoKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
-    procedure JsonOutputMemoKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure TrayIcon1Click(Sender: TObject);
   private
 
@@ -49,6 +52,7 @@ type
 var
   jsonhelperform: Tjsonhelperform;
   jData : TJSONData;
+  jsonHighlighter : TSynFacilSyn;
 
 implementation
 
@@ -59,7 +63,16 @@ implementation
 procedure Tjsonhelperform.ClearButtonClick(Sender: TObject);
 begin
   JsonInputMemo.Clear;
-  JsonOutputMemo.Clear;
+  JSONSynEdit.Clear;
+end;
+
+procedure Tjsonhelperform.SearchInputKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  if Key <> VK_RETURN then begin
+    JSONSynEdit.CaretX:=0;
+    JSONSynEdit.CaretY:=0;
+  end;
+  JSONSynEdit.SearchReplace(SearchInput.Text, '', []);
 end;
 
 procedure Tjsonhelperform.FontComboBoxChange(Sender: TObject);
@@ -68,12 +81,15 @@ var
 begin
   fsize := StrtoInt(FontComboBox.Items[FontComboBox.ItemIndex]);
   JsonInputMemo.font.Size := fsize;
-  JsonOutputMemo.font.Size := fsize;
+  JSONSynEdit.font.Size := fsize;
 end;
 
 procedure Tjsonhelperform.FormCreate(Sender: TObject);
 begin
   TrayIcon1.Icon.LoadFromLazarusResource('brackets');
+  jsonHighlighter := TSynFacilSyn.Create(self);
+  JSONSynEdit.Highlighter := jsonHighlighter;
+  jsonHighlighter.LoadFromFile('C:\Users\Marcus\Documents\jshl.xml');
 end;
 
 procedure Tjsonhelperform.HideButtonClick(Sender: TObject);
@@ -82,13 +98,25 @@ begin
   jsonhelperform.Hide;
 end;
 
+procedure Tjsonhelperform.JSONSynEditKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  if ((Shift = [ssMeta]) or (Shift = [ssCtrl])) and (Key = VK_C) then begin
+    if JSONSynEdit.SelAvail then begin
+      Clipboard.AsText := JSONSynEdit.SelText
+    end else begin
+      Clipboard.AsText := JSONSynEdit.Text;
+    end;
+  end;
+end;
+
 procedure Tjsonhelperform.QuitButtonClick(Sender: TObject);
 begin
   Halt;
 end;
 
-procedure Tjsonhelperform.JsonInputMemoKeyUp(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
+procedure Tjsonhelperform.JsonInputMemoKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+var
+  temp: String;
 begin
   // Keyup for left-hand memo
   if (Shift = [ssMeta]) and (Key = VK_C) then begin
@@ -101,10 +129,15 @@ begin
       InvalidLabel.Visible:=false;
       StatusLabel.Visible:=false;
 
-      JsonOutputMemo.Text:='';
+      JSONSynEdit.Clear;
 
-      jData := GetJSON(JsonInputMemo.Text);
-      JsonOutputMemo.Text:=jData.FormatJSON;
+      temp := Trim(JsonInputMemo.Text);
+
+      jData := GetJSON(temp);
+
+      if length(temp) > 0 then
+        JSONSynEdit.Text := jData.FormatJSON;
+
     except
       on E: Exception do begin
         InvalidLabel.Visible:=true;
@@ -112,17 +145,6 @@ begin
         StatusLabel.Visible:=true;
       end;
     end;
-  end;
-end;
-
-procedure Tjsonhelperform.JsonOutputMemoKeyUp(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
-begin
-  if (Shift = [ssMeta]) and (Key = VK_C) then begin
-    if JsonOutputMemo.SelLength > 0 then
-      Clipboard.AsText := JsonOutputMemo.SelText
-    else
-      Clipboard.AsText := JsonOutputMemo.Text;
   end;
 end;
 
