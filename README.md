@@ -1,5 +1,5 @@
 # JSON Helper
-OSX desktop tool to validate and prettify json
+Desktop tool to validate and prettify json
 <p align="center">
   <img src="Screen Shot.png">
 </p>
