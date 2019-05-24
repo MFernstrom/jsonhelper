@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<Language name="JSON" ext="json">
+  <Attribute Name="VALUE" ForeCol="#3030ff" Bold="True"></Attribute>
+  <Attribute Name="KEY" ForeCol="#a04040" Bold="True"></Attribute>
+  <Attribute Name="String" ForeCol="#400000" Bold="False"></Attribute>
+  <Attribute Name="StringLiteral" ForeCol="#400080" Bold="True" Italic="True"></Attribute>
+ 
+  <Token CharsStart="0..9" Content = '-0..9.abcdef' Attribute='NUMBER'> </Token>
+  <Token Regex="\x22[^:]+\x22 ?:" Attribute='KEY' ></Token>
+  <Token Regex=": ?\x22.*+\x22" Attribute='VALUE'></Token>
+ 
+  <Identifiers CharsStart= "a..z" Content = "a..z">
+        <StringLiteral>
+                null true false
+        </StringLiteral>
+  </Identifiers>
+  <!-- Although comments are not valid JSON - I allow in my project and strip before sending -->
+  <Comment Start="//" ></Comment>
+ 
+  <Block Name="JSONArray" Start='[' End=']' ></Block>
+  <Block Name="JSONObject" Start='{' End='}' ></Block>
+ 
+</Language>

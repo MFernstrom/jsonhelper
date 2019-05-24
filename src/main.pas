@@ -1,7 +1,8 @@
 unit main;
 
 {
-  Version         0.3.4
+  Version         0.3.9
+  Updated         May 24, 2019
   Author          Marcus Fernstrom
   Copyright       Marcus Fernstrom, 2018
   License         GPLv3
@@ -22,19 +23,20 @@ type
   { Tjsonhelperform }
 
   Tjsonhelperform = class(TForm)
+    CopyButton: TButton;
     ClearButton: TButton;
+    CopiedLabel: TLabel;
     SearchInput: TEdit;
     FontComboBox: TComboBox;
-    HideButton: TButton;
     FontLabel: TLabel;
-    QuitButton: TButton;
     InvalidLabel: TLabel;
     StatusLabel: TLabel;
     JsonInputMemo: TMemo;
     Splitter1: TSplitter;
     JSONSynEdit: TSynEdit;
-    TrayIcon1: TTrayIcon;
+    TimerCopiedLabel: TTimer;
     procedure ClearButtonClick(Sender: TObject);
+    procedure CopyButtonClick(Sender: TObject);
     procedure SearchInputKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FontComboBoxChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -42,6 +44,9 @@ type
     procedure JSONSynEditKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure QuitButtonClick(Sender: TObject);
     procedure JsonInputMemoKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure CopiedLabelTimerStartTimer(Sender: TObject);
+    procedure TimerCopiedLabelStartTimer(Sender: TObject);
+    procedure TimerCopiedLabelTimer(Sender: TObject);
     procedure TrayIcon1Click(Sender: TObject);
   private
 
@@ -66,6 +71,12 @@ begin
   JSONSynEdit.Clear;
 end;
 
+procedure Tjsonhelperform.CopyButtonClick(Sender: TObject);
+begin
+  Clipboard.AsText := JSONSynEdit.Text;
+  TimerCopiedLabel.Enabled := true;
+end;
+
 procedure Tjsonhelperform.SearchInputKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
   if Key <> VK_RETURN then begin
@@ -86,7 +97,6 @@ end;
 
 procedure Tjsonhelperform.FormCreate(Sender: TObject);
 begin
-  TrayIcon1.Icon.LoadFromLazarusResource('brackets');
   jsonHighlighter := TSynFacilSyn.Create(self);
   JSONSynEdit.Highlighter := jsonHighlighter;
   jsonHighlighter.LoadFromResourceName(HInstance, 'JSHL');
@@ -146,6 +156,23 @@ begin
       end;
     end;
   end;
+end;
+
+procedure Tjsonhelperform.CopiedLabelTimerStartTimer(Sender: TObject);
+begin
+  ShowMessage('Started');
+  CopiedLabel.show();
+end;
+
+procedure Tjsonhelperform.TimerCopiedLabelStartTimer(Sender: TObject);
+begin
+  CopiedLabel.Show();
+end;
+
+procedure Tjsonhelperform.TimerCopiedLabelTimer(Sender: TObject);
+begin
+  CopiedLabel.Hide();
+  TimerCopiedLabel.Enabled := false;
 end;
 
 procedure Tjsonhelperform.TrayIcon1Click(Sender: TObject);

@@ -14,7 +14,7 @@
       </XPManifest>
       <Icon Value="0"/>
       <Resources Count="1">
-        <Resource_0 FileName="..\..\..\..\jshl.xml" Type="RCDATA" ResourceName="JSHL"/>
+        <Resource_0 FileName="jshl.xml" Type="RCDATA" ResourceName="JSHL"/>
       </Resources>
     </General>
     <BuildModes Count="2">
@@ -61,13 +61,16 @@
       <FormatVersion Value="2"/>
       <Modes Count="0"/>
     </RunParams>
-    <RequiredPackages Count="2">
+    <RequiredPackages Count="3">
       <Item1>
-        <PackageName Value="SynEdit"/>
+        <PackageName Value="lazupdate"/>
       </Item1>
       <Item2>
-        <PackageName Value="LCL"/>
+        <PackageName Value="SynEdit"/>
       </Item2>
+      <Item3>
+        <PackageName Value="LCL"/>
+      </Item3>
     </RequiredPackages>
     <Units Count="4">
       <Unit0>
