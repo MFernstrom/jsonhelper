@@ -3,3 +3,4 @@
 /src/dist/
 /src/lib/
 .bak
+*.md.bak
