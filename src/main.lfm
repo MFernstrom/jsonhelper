@@ -1,25 +1,25 @@
 object jsonhelperform: Tjsonhelperform
-  Left = 354
-  Height = 884
-  Top = 238
-  Width = 1734
+  Left = 69
+  Height = 360
+  Top = 92
+  Width = 640
   Caption = 'JSON Helper v0.3.9 (https://github.com/MFernstrom/jsonhelper)'
-  ClientHeight = 884
-  ClientWidth = 1734
-  DesignTimePPI = 192
+  ClientHeight = 360
+  ClientWidth = 640
   OnCreate = FormCreate
-  LCLVersion = '2.1.0.0'
+  LCLVersion = '2.0.0.3'
   object JsonInputMemo: TMemo
     AnchorSideLeft.Control = Owner
     AnchorSideRight.Control = Splitter1
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 0
-    Height = 804
-    Top = 80
-    Width = 502
+    Height = 320
+    Top = 40
+    Width = 184
     Anchors = [akTop, akLeft, akRight, akBottom]
-    Font.Height = -27
+    Font.Height = -14
+    Lines.Strings = (    )
     OnKeyUp = JsonInputMemoKeyUp
     ParentFont = False
     ScrollBars = ssAutoBoth
@@ -29,18 +29,18 @@ object jsonhelperform: Tjsonhelperform
     AnchorSideTop.Control = JsonInputMemo
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 502
-    Height = 804
-    Top = 80
-    Width = 10
+    Left = 184
+    Height = 320
+    Top = 40
+    Width = 5
     Align = alNone
     Anchors = [akTop, akBottom]
   end
   object ClearButton: TButton
-    Left = 16
-    Height = 42
-    Top = 16
-    Width = 80
+    Left = 8
+    Height = 20
+    Top = 8
+    Width = 60
     AutoSize = True
     Caption = 'Clear'
     OnClick = ClearButtonClick
@@ -51,11 +51,11 @@ object jsonhelperform: Tjsonhelperform
     AnchorSideLeft.Control = InvalidLabel
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = InvalidLabel
-    Left = 451
-    Height = 32
-    Top = 21
-    Width = 120
-    BorderSpacing.Left = 20
+    Left = 278
+    Height = 16
+    Top = 10
+    Width = 72
+    BorderSpacing.Left = 10
     Caption = 'StatusLabel'
     ParentColor = False
     ParentFont = False
@@ -66,11 +66,11 @@ object jsonhelperform: Tjsonhelperform
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = CopyButton
     AnchorSideTop.Side = asrCenter
-    Left = 296
-    Height = 32
-    Top = 21
-    Width = 135
-    BorderSpacing.Left = 20
+    Left = 191
+    Height = 16
+    Top = 10
+    Width = 77
+    BorderSpacing.Left = 10
     Caption = 'Invalid JSON'
     Font.Color = clRed
     ParentColor = False
@@ -81,13 +81,13 @@ object jsonhelperform: Tjsonhelperform
     AnchorSideTop.Control = ClearButton
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
-    Left = 1600
-    Height = 40
-    Top = 16
-    Width = 114
+    Left = 573
+    Height = 20
+    Top = 8
+    Width = 57
     Anchors = [akTop, akRight]
-    BorderSpacing.Right = 20
-    ItemHeight = 32
+    BorderSpacing.Right = 10
+    ItemHeight = 19
     ItemIndex = 2
     Items.Strings = (
       '8'
@@ -101,6 +101,7 @@ object jsonhelperform: Tjsonhelperform
       '20'
     )
     OnChange = FontComboBoxChange
+    ParentFont = False
     TabOrder = 3
     Text = '10'
   end
@@ -108,14 +109,15 @@ object jsonhelperform: Tjsonhelperform
     AnchorSideTop.Control = FontComboBox
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = FontComboBox
-    Left = 1490
-    Height = 32
-    Top = 20
-    Width = 95
+    Left = 510
+    Height = 16
+    Top = 10
+    Width = 55
     Anchors = [akTop, akRight]
-    BorderSpacing.Right = 15
+    BorderSpacing.Right = 8
     Caption = 'Font size'
     ParentColor = False
+    ParentFont = False
   end
   inline JSONSynEdit: TSynEdit
     AnchorSideLeft.Control = Splitter1
@@ -124,12 +126,12 @@ object jsonhelperform: Tjsonhelperform
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 512
-    Height = 804
-    Top = 80
-    Width = 1222
+    Left = 189
+    Height = 320
+    Top = 40
+    Width = 451
     Anchors = [akTop, akLeft, akRight, akBottom]
-    Font.Height = 30
+    Font.Height = 15
     Font.Name = 'Courier New'
     Font.Pitch = fpFixed
     Font.Quality = fqNonAntialiased
@@ -138,7 +140,7 @@ object jsonhelperform: Tjsonhelperform
     TabOrder = 4
     OnKeyUp = JSONSynEditKeyUp
     Gutter.Visible = False
-    Gutter.Width = 113
+    Gutter.Width = 59
     Gutter.MouseActions = <>
     RightGutter.Visible = False
     RightGutter.Width = 0
@@ -590,11 +592,11 @@ object jsonhelperform: Tjsonhelperform
     LineHighlightColor.Foreground = clNone
     inline SynLeftGutterPartList1: TSynGutterPartList
       object SynGutterMarks1: TSynGutterMarks
-        Width = 48
+        Width = 24
         MouseActions = <>
       end
       object SynGutterLineNumber1: TSynGutterLineNumber
-        Width = 33
+        Width = 19
         MouseActions = <>
         MarkupInfo.Background = clBtnFace
         MarkupInfo.Foreground = clNone
@@ -604,19 +606,18 @@ object jsonhelperform: Tjsonhelperform
         LeadingZeros = False
       end
       object SynGutterChanges1: TSynGutterChanges
-        Width = 8
+        Width = 4
         MouseActions = <>
         ModifiedColor = 59900
         SavedColor = clGreen
       end
       object SynGutterSeparator1: TSynGutterSeparator
-        Width = 4
+        Width = 2
         MouseActions = <>
         MarkupInfo.Background = clWhite
         MarkupInfo.Foreground = clGray
       end
       object SynGutterCodeFolding1: TSynGutterCodeFolding
-        Width = 20
         MouseActions = <>
         MarkupInfo.Background = clNone
         MarkupInfo.Foreground = clGray
@@ -629,15 +630,16 @@ object jsonhelperform: Tjsonhelperform
     AnchorSideTop.Control = JSONSynEdit
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
-    Left = 1468
-    Height = 40
+    Left = 508
+    Height = 22
     Hint = 'Search'
-    Top = 90
-    Width = 221
+    Top = 45
+    Width = 110
     Anchors = [akTop, akRight]
-    BorderSpacing.Top = 10
-    BorderSpacing.Right = 45
+    BorderSpacing.Top = 5
+    BorderSpacing.Right = 22
     OnKeyUp = SearchInputKeyUp
+    ParentFont = False
     ParentShowHint = False
     ShowHint = True
     TabOrder = 5
@@ -647,14 +649,15 @@ object jsonhelperform: Tjsonhelperform
     AnchorSideLeft.Control = ClearButton
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = ClearButton
-    Left = 116
-    Height = 42
-    Top = 16
-    Width = 160
+    Left = 78
+    Height = 20
+    Top = 8
+    Width = 103
     AutoSize = True
-    BorderSpacing.Left = 20
+    BorderSpacing.Left = 10
     Caption = 'Copy output'
     OnClick = CopyButtonClick
+    ParentFont = False
     TabOrder = 6
   end
   object CopiedLabel: TLabel
@@ -662,13 +665,14 @@ object jsonhelperform: Tjsonhelperform
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = CopyButton
     AnchorSideTop.Side = asrCenter
-    Left = 296
-    Height = 32
-    Top = 21
-    Width = 155
-    BorderSpacing.Left = 20
+    Left = 191
+    Height = 16
+    Top = 10
+    Width = 87
+    BorderSpacing.Left = 10
     Caption = 'Output copied'
     ParentColor = False
+    ParentFont = False
     Visible = False
   end
   object TimerCopiedLabel: TTimer
@@ -676,7 +680,7 @@ object jsonhelperform: Tjsonhelperform
     Interval = 2000
     OnTimer = TimerCopiedLabelTimer
     OnStartTimer = TimerCopiedLabelStartTimer
-    Left = 864
-    Top = 8
+    left = 432
+    top = 4
   end
 end
